@@ -150,10 +150,13 @@ function init_node() {
 }
 
 function start_node() {
-    docker exec node1 /home/indy/scripts/start_node.sh
-    docker exec node2 /home/indy/scripts/start_node.sh
-    docker exec node3 /home/indy/scripts/start_node.sh
-    docker exec node4 /home/indy/scripts/start_node.sh
+    cnt=$(docker ps | grep indy-node2:1.0 | wc -l)
+    if [ $cnt == 0 ]; then 
+        echo $cnt 
+        docker-compose up -d node5 node6 node7 node8
+    else
+        echo "not ready!! retry 3 seconds later"
+    fi 
 }
 
 function down_node() {
@@ -162,20 +165,13 @@ function down_node() {
     rm -rf ./scripts/seeds
     rm -rf ./tmp 
 }
-# NODE_NUM="${1}"
-# NETWORK_NAME=${2}
-# NODE_SEED=${3}
 
-
-# docker-comppose up -d indy-cli 
-
-# ./init_node.sh 
 
 if [ "$1" == "seed-trustees" ]; then
   createRoleSeed trustees
 elif [ "$1" == "seed-stewards" ]; then
     createRoleSeed stewards
-elif [ "$1" == "seed-nodes" ]; then ## Clear the network
+elif [ "$1" == "seed-nodes" ]; then 
     createRoleSeed nodes
 elif [ "$1" == "seed-all" ]; then 
     createRoleSeed trustees

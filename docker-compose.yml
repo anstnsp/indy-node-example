@@ -4,7 +4,7 @@ services:
   node1:
     container_name: node1 
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 1 test-network && sleep 9999'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 1 test-network && sleep 20'''
     # command: 'bash -c ''sleep 9999'''
     networks:
       - anstnsp
@@ -15,12 +15,13 @@ services:
       - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes1-seed
     volumes:
       - node1-data:/var/lib/indy
-      - ./scripts:/home/indy/scripts:ro
+      - node1-config:/etc/indy
+      - ./scripts:/home/indy/scripts
       
   node2:
     container_name: node2
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 2 test-network && sleep 9999'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 2 test-network'''
     networks:
       - anstnsp
     ports:
@@ -30,12 +31,13 @@ services:
       - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes2-seed
     volumes:
       - node2-data:/var/lib/indy
-      - ./scripts:/home/indy/scripts:ro
+      - node2-config:/etc/indy
+      - ./scripts:/home/indy/scripts
 
   node3:
     container_name: node3
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 3 test-network && sleep 9999'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 3 test-network'''
     networks:
       - anstnsp
     ports:
@@ -45,12 +47,13 @@ services:
       - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes3-seed
     volumes:
       - node3-data:/var/lib/indy
-      - ./scripts:/home/indy/scripts:ro
+      - node3-config:/etc/indy
+      - ./scripts:/home/indy/scripts
 
   node4:
     container_name: node4
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 4 test-network && sleep 9999'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 4 test-network '''
     networks:
       - anstnsp
     ports:
@@ -60,8 +63,74 @@ services:
       - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes4-seed
     volumes:
       - node4-data:/var/lib/indy
-      - ./scripts:/home/indy/scripts:ro5
- 
+      - node4-config:/etc/indy
+      - ./scripts:/home/indy/scripts
+
+      
+  node5:
+    container_name: node5 
+    image: indy-node2:1.0
+    command: 'bash -c ''/home/indy/scripts/start_node.sh'''
+    networks:
+      - anstnsp
+    ports:
+      - 9701:9701
+      - 9702:9702
+    environment:
+      - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes1-seed
+    volumes:
+      - node1-data:/var/lib/indy
+      - node1-config:/etc/indy
+      - ./scripts:/home/indy/scripts
+      
+  node6:
+    container_name: node6
+    image: indy-node2:1.0
+    command: 'bash -c ''/home/indy/scripts/start_node.sh'''
+    networks:
+      - anstnsp
+    ports:
+      - 9703:9703
+      - 9704:9704
+    environment:
+      - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes1-seed
+    volumes:
+      - node2-data:/var/lib/indy
+      - node2-config:/etc/indy
+      - ./scripts:/home/indy/scripts
+
+  node7:
+    container_name: node7
+    image: indy-node2:1.0
+    command: 'bash -c ''/home/indy/scripts/start_node.sh'''
+    networks:
+      - anstnsp
+    ports:
+      - 9705:9705
+      - 9706:9706
+    environment:
+      - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes1-seed
+    volumes:
+      - node3-data:/var/lib/indy
+      - node3-config:/etc/indy
+      - ./scripts:/home/indy/scripts
+
+  node8:
+    container_name: node8
+    image: indy-node2:1.0
+    command: 'bash -c ''/home/indy/scripts/start_node.sh'''
+    networks:
+      - anstnsp
+    ports:
+      - 9707:9707
+      - 9708:9708
+    environment:
+      - NODE_SEED=/home/indy/scripts/seeds/nodes/nodes1-seed
+    volumes:
+      - node4-data:/var/lib/indy
+      - node4-config:/etc/indy
+      - ./scripts:/home/indy/scripts
+      
   indy-cli:
     container_name: indy-cli
     image: indy-cli:1.0
@@ -76,6 +145,11 @@ networks:
 
 volumes:
   node1-data:
+  node1-config:
   node2-data:
+  node2-config:
   node3-data:
+  node3-config:
   node4-data:
+  node4-config:
+  
