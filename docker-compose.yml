@@ -20,7 +20,7 @@ services:
   node2:
     container_name: node2
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 2 test-network'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 2 test-network && sleep 9999'''
     networks:
       - anstnsp
     ports:
@@ -35,7 +35,7 @@ services:
   node3:
     container_name: node3
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 3 test-network'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 3 test-network && sleep 9999'''
     networks:
       - anstnsp
     ports:
@@ -50,7 +50,7 @@ services:
   node4:
     container_name: node4
     image: indy-node2:1.0
-    command: 'bash -c ''/home/indy/scripts/init_node.sh 4 test-network'''
+    command: 'bash -c ''/home/indy/scripts/init_node.sh 4 test-network && sleep 9999'''
     networks:
       - anstnsp
     ports:
