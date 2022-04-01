@@ -3,7 +3,7 @@ services:
 
   node1:
     container_name: node1 
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/init_node.sh 1 test-network && sleep 20'''
     # command: 'bash -c ''sleep 9999'''
     networks:
@@ -20,7 +20,7 @@ services:
       
   node2:
     container_name: node2
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/init_node.sh 2 test-network'''
     networks:
       - anstnsp
@@ -36,7 +36,7 @@ services:
 
   node3:
     container_name: node3
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/init_node.sh 3 test-network'''
     networks:
       - anstnsp
@@ -52,7 +52,7 @@ services:
 
   node4:
     container_name: node4
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/init_node.sh 4 test-network '''
     networks:
       - anstnsp
@@ -69,7 +69,7 @@ services:
       
   node5:
     container_name: node5 
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/start_node.sh'''
     networks:
       - anstnsp
@@ -85,7 +85,7 @@ services:
       
   node6:
     container_name: node6
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/start_node.sh'''
     networks:
       - anstnsp
@@ -101,7 +101,7 @@ services:
 
   node7:
     container_name: node7
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/start_node.sh'''
     networks:
       - anstnsp
@@ -117,7 +117,7 @@ services:
 
   node8:
     container_name: node8
-    image: indy-node2:1.0
+    image: indy-node:1.0
     command: 'bash -c ''/home/indy/scripts/start_node.sh'''
     networks:
       - anstnsp

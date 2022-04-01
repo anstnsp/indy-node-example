@@ -44,7 +44,7 @@ fi
 
 #STEWARD
 NODE_VERKEY=$(grep Verification /var/lib/indy/$NETWORK_NAME/init_output | head -n 1 |  awk '{print $4}')
-NODE_IP=$HOST
+NODE_IP="192.168.59.100" #minikube ip 
 BLSKEY=$(grep "BLS Public key" /var/lib/indy/$NETWORK_NAME/init_output | awk '{print $5}')
 BLSKEY_POP=$(grep "Proof of possession" /var/lib/indy/$NETWORK_NAME/init_output | awk '{print $8}')
 

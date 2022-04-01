@@ -6,7 +6,8 @@ RUN apt-get update -y && apt-get install -y \
     git \
     apt-transport-https \
 	ca-certificates \
-    pwgen
+    pwgen \
+    netcat 
      
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CE7709D068DB5E88 || \
